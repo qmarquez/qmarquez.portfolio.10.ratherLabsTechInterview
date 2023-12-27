@@ -1,0 +1,17 @@
+{
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "ts-jest": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "paths": {
+      "@common/*": ["./src/common/*"],
+      "@handlers/*": ["./src/handlers/*"],
+      "@services/*": ["./src/services/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,95 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: 'Market Status API'
+  description: 'Documentación de la API'
+basePath: '/'
+
+paths:
+  /api-docs:
+    get:
+      summary: 'Show this documentation'
+      description: 'Market Status API documentation'
+      responses:
+        '200':
+          description: 'Operación exitosa'
+  /orderbook-tips:
+    get:
+      summary: 'Get orderbook tips'
+      description: 'Retrieves an snapshot of orderbook tips'
+      parameters:
+        - in: query
+          name: symbol
+          type: string
+          required: true
+          description: 'Symbol to fetch book'
+      responses:
+        '200':
+          description: 'Operación exitosa'
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  orderbookTips: 
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: number
+                        minItems: 3
+                        maxItems: 3
+                      
+              message: 
+                type: string
+              status:
+                type: number
+
+  /trade:
+    post:
+      summary: 'Trade'
+      description: 'Calc the chance to trade an op'
+      parameters:
+        - name: 'body'
+          in: 'body'
+          required: true
+          schema:
+            $ref: '#/definitions/Trade'
+      responses:
+        '200':
+          description: 'Operación exitosa'
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  effectivePrice: 
+                    type: number
+                  orderCompleted:
+                    type: number
+              message: 
+                type: string
+              status:
+                type: number
+
+definitions:
+  Trade:
+    type: object
+    properties:
+      symbol:
+        type: string
+        description: 'Symbol to trade'
+      amount:
+        type: number
+        description: 'Amount to trade'
+      operation:
+        type: string
+        enum: 
+          - 'buy'
+          - 'sell'
+        description: 'Operation to trade'
+      maxEffectivePrice:
+        type: number
+        description: 'Max price trade'
