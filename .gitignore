@@ -24,3 +24,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# log
+*.log
+
+# test
+/coverage

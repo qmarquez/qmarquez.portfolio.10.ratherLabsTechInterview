@@ -4,9 +4,10 @@
   "rules": {
     "prefer-const": "warn",
     "no-console": "warn",
-    "max-len": ["warn", { "code": 80 }],
+    "max-len": ["warn", { "code": 100 }],
     //#region =========== Unused Import ===========
-    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "off",
     "unused-imports/no-unused-imports": "warn",
     "unused-imports/no-unused-vars": [
       "warn",
@@ -27,6 +28,8 @@
         "groups": [
           // ext library
           ["^@?\\w", "^\\u0000"],
+          // app imports
+          ["^@common/", "@handlers/"],
           // Other imports
           ["^@/"],
           // relative paths up until 3 level
